@@ -1,0 +1,281 @@
+{
+  "version": "20.0.0",
+  "artifacts": {
+    "CdkWorkshopPipelineStackDeployWebService590FC31C.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CdkWorkshopPipelineStackDeployWebService590FC31C.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CdkWorkshopPipelineStackDeployWebService590FC31C": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://427829476435/us-east-1",
+      "properties": {
+        "templateFile": "CdkWorkshopPipelineStackDeployWebService590FC31C.template.json",
+        "validateOnSynth": true,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-cfn-exec-role-427829476435-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-427829476435-us-east-1/a07bc4728b9dacd901a9e0c74703d564ef83219fb3985f56cb86acee7032a7be.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CdkWorkshopPipelineStackDeployWebService590FC31C.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-lookup-role-427829476435-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        },
+        "stackName": "Deploy-WebService"
+      },
+      "dependencies": [
+        "CdkWorkshopPipelineStackDeployWebService590FC31C.assets"
+      ],
+      "metadata": {
+        "/CdkWorkshopPipelineStack/Deploy/WebService/HelloHandler/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloHandlerServiceRole11EF7C63"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/HelloHandler/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloHandler2E4FBA4D"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/HelloHitCounter/Hits/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloHitCounterHits7AAEBF80"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/HelloHitCounter/HitCounterHandler/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloHitCounterHitCounterHandlerServiceRoleD45002B8"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/HelloHitCounter/HitCounterHandler/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloHitCounterHitCounterHandlerServiceRoleDefaultPolicy1487A60A"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/HelloHitCounter/HitCounterHandler/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloHitCounterHitCounterHandlerDAEA7B37"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointEEF1FD8F"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointCloudWatchRoleC3C64E0F"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointAccountB8304247"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointDeployment318525DAfc268115310b685803458cf04783ca3c"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointDeploymentStageprodB78BEEA0"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Endpoint8024A810"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Default/{proxy+}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Endpointproxy39E2174E"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Default/{proxy+}/ANY/ApiPermission.CdkWorkshopPipelineStackDeployWebServiceEndpoint18CBA6A2.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointproxyANYApiPermissionCdkWorkshopPipelineStackDeployWebServiceEndpoint18CBA6A2ANYproxy820EE96D"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Default/{proxy+}/ANY/ApiPermission.Test.CdkWorkshopPipelineStackDeployWebServiceEndpoint18CBA6A2.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointproxyANYApiPermissionTestCdkWorkshopPipelineStackDeployWebServiceEndpoint18CBA6A2ANYproxyF5DC18C8"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Default/{proxy+}/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointproxyANYC09721C5"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Default/ANY/ApiPermission.CdkWorkshopPipelineStackDeployWebServiceEndpoint18CBA6A2.ANY..": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointANYApiPermissionCdkWorkshopPipelineStackDeployWebServiceEndpoint18CBA6A2ANYD7E9D443"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Default/ANY/ApiPermission.Test.CdkWorkshopPipelineStackDeployWebServiceEndpoint18CBA6A2.ANY..": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointANYApiPermissionTestCdkWorkshopPipelineStackDeployWebServiceEndpoint18CBA6A2ANYDF47FBEB"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/Endpoint/Default/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EndpointANY485C938B"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/Rendered/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterRenderedServiceRole254DB4EA"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/Rendered/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterRenderedServiceRoleDefaultPolicy9ADB8C83"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/Rendered/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterRendered9C783E45"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpoint5A0EF326"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointCloudWatchRole87B94D6A"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointAccount0B75E76A"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointDeployment1CE7C5764f5a8452af28572eecc2c2e9989f22a9"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointDeploymentStageprodF3901FC7"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointCA1B1E4B"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Default/{proxy+}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointproxy2F4C239F"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Default/{proxy+}/ANY/ApiPermission.CdkWorkshopPipelineStackDeployWebServiceViewHitCounterViewerEndpoint335A0B34.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointproxyANYApiPermissionCdkWorkshopPipelineStackDeployWebServiceViewHitCounterViewerEndpoint335A0B34ANYproxy817887C4"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Default/{proxy+}/ANY/ApiPermission.Test.CdkWorkshopPipelineStackDeployWebServiceViewHitCounterViewerEndpoint335A0B34.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointproxyANYApiPermissionTestCdkWorkshopPipelineStackDeployWebServiceViewHitCounterViewerEndpoint335A0B34ANYproxyF052D711"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Default/{proxy+}/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointproxyANYFF4B8F5B"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Default/ANY/ApiPermission.CdkWorkshopPipelineStackDeployWebServiceViewHitCounterViewerEndpoint335A0B34.ANY..": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointANYApiPermissionCdkWorkshopPipelineStackDeployWebServiceViewHitCounterViewerEndpoint335A0B34ANY57812284"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Default/ANY/ApiPermission.Test.CdkWorkshopPipelineStackDeployWebServiceViewHitCounterViewerEndpoint335A0B34.ANY..": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointANYApiPermissionTestCdkWorkshopPipelineStackDeployWebServiceViewHitCounterViewerEndpoint335A0B34ANYC13B4BFE"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/ViewHitCounter/ViewerEndpoint/Default/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ViewHitCounterViewerEndpointANY66F2285B"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/GatewayUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GatewayUrl"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/TableViewerUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TableViewerUrl"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Deploy/WebService/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CdkWorkshopPipelineStack/Deploy/WebService"
+    }
+  }
+}
