@@ -45,8 +45,8 @@ export class WorkshopPipelineStack extends cdk.Stack {
         region: "us-east-1"
       }
     });
-    const prodStage = pipeline.addStage(prod);
-    const devStage = pipeline.addStage(dev);
+    //pipeline.addStage(prod);
+    //pipeline.addStage(dev);
 
 
   }

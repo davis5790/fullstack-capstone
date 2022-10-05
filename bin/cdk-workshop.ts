@@ -6,5 +6,5 @@ new WorkshopPipelineStack(app, 'CdkWorkshopPipelineStack', {
     env: {
         account: "226115143550",
         region: "us-east-1"
-    }    
+    }
 });
