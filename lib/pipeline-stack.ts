@@ -33,6 +33,12 @@ export class WorkshopPipelineStack extends cdk.Stack {
       )
     });
 
+    const qa = new WorkshopPipelineStage(this, 'Qa',{
+      env: {
+        account: "427829476435",
+        region: "us-east-1"
+      }
+    });
     const prod = new WorkshopPipelineStage(this, 'Prod',{
       env: {
         account: "427829476435",
@@ -45,8 +51,10 @@ export class WorkshopPipelineStack extends cdk.Stack {
         region: "us-east-1"
       }
     });
-    //pipeline.addStage(prod);
-    //pipeline.addStage(dev);
+    pipeline.addStage(dev);
+    pipeline.addStage(qa);
+    pipeline.addStage(prod);
+    
 
 
   }
