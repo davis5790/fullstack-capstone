@@ -1,0 +1,77 @@
+{
+  "version": "20.0.0",
+  "artifacts": {
+    "CdkWorkshopPipelineStackProdWebService83A8745B.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CdkWorkshopPipelineStackProdWebService83A8745B.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CdkWorkshopPipelineStackProdWebService83A8745B": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://427829476435/us-east-1",
+      "properties": {
+        "templateFile": "CdkWorkshopPipelineStackProdWebService83A8745B.template.json",
+        "validateOnSynth": true,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-cfn-exec-role-427829476435-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-427829476435-us-east-1/c5ca43565a92d9f8192fd9d36d592acc4f113c9811536751b461673db50650e5.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CdkWorkshopPipelineStackProdWebService83A8745B.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-lookup-role-427829476435-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        },
+        "stackName": "Prod-WebService"
+      },
+      "dependencies": [
+        "CdkWorkshopPipelineStackProdWebService83A8745B.assets"
+      ],
+      "metadata": {
+        "/CdkWorkshopPipelineStack/Prod/WebService/Bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Bucket83908E77"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Prod/WebService/HelloHandler/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloHandlerServiceRole11EF7C63"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Prod/WebService/HelloHandler/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloHandler2E4FBA4D"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Prod/WebService/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Prod/WebService/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Prod/WebService/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CdkWorkshopPipelineStack/Prod/WebService"
+    }
+  }
+}

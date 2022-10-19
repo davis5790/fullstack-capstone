@@ -1,11 +1,25 @@
 {
   "version": "20.0.0",
   "artifacts": {
-    "assembly-CdkWorkshopPipelineStack-Deploy": {
+    "assembly-CdkWorkshopPipelineStack-Qa": {
       "type": "cdk:cloud-assembly",
       "properties": {
-        "directoryName": "assembly-CdkWorkshopPipelineStack-Deploy",
-        "displayName": "CdkWorkshopPipelineStack/Deploy"
+        "directoryName": "assembly-CdkWorkshopPipelineStack-Qa",
+        "displayName": "CdkWorkshopPipelineStack/Qa"
+      }
+    },
+    "assembly-CdkWorkshopPipelineStack-Prod": {
+      "type": "cdk:cloud-assembly",
+      "properties": {
+        "directoryName": "assembly-CdkWorkshopPipelineStack-Prod",
+        "displayName": "CdkWorkshopPipelineStack/Prod"
+      }
+    },
+    "assembly-CdkWorkshopPipelineStack-Dev": {
+      "type": "cdk:cloud-assembly",
+      "properties": {
+        "directoryName": "assembly-CdkWorkshopPipelineStack-Dev",
+        "displayName": "CdkWorkshopPipelineStack/Dev"
       }
     },
     "Tree": {
@@ -30,7 +44,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::226115143550:role/cdk-hnb659fds-deploy-role-226115143550-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::226115143550:role/cdk-hnb659fds-cfn-exec-role-226115143550-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-226115143550-us-east-1/0559fca57493653934570a5f5128f1d397effbd3678d0b4e51e66d50142e9f5d.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-226115143550-us-east-1/16eab772e440667580ecb5288bc53ff2437b341eb9415b4c2c2113364ba5a485.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -52,10 +66,10 @@
             "data": "WorkshopRepoE6F95803"
           }
         ],
-        "/CdkWorkshopPipelineStack/WorkshopRepo/CdkWorkshopPipelineStackPipeline386BAED5EventRule/Resource": [
+        "/CdkWorkshopPipelineStack/WorkshopRepo/CdkWorkshopPipelineStackPipeline386BAED5-main-EventRule/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "WorkshopRepoCdkWorkshopPipelineStackPipeline386BAED5EventRule632E6CD8"
+            "data": "WorkshopRepoCdkWorkshopPipelineStackPipeline386BAED5mainEventRule27729967"
           }
         ],
         "/CdkWorkshopPipelineStack/Pipeline/Pipeline/ArtifactsBucketEncryptionKey/Resource": [
@@ -142,42 +156,6 @@
             "data": "PipelineBuildSynthStepCdkBuildProject7FBB5116"
           }
         ],
-        "/CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestAPIGatewayEndpoint/TestAPIGatewayEndpoint/Role/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineDeployTestAPIGatewayEndpointRole91F8288D"
-          }
-        ],
-        "/CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestAPIGatewayEndpoint/TestAPIGatewayEndpoint/Role/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineDeployTestAPIGatewayEndpointRoleDefaultPolicy388517F4"
-          }
-        ],
-        "/CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestAPIGatewayEndpoint/TestAPIGatewayEndpoint/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineDeployTestAPIGatewayEndpoint8BF7FD0A"
-          }
-        ],
-        "/CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestViewerEndpoint/TestViewerEndpoint/Role/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineDeployTestViewerEndpointRole292A0FAA"
-          }
-        ],
-        "/CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestViewerEndpoint/TestViewerEndpoint/Role/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineDeployTestViewerEndpointRoleDefaultPolicy847D5596"
-          }
-        ],
-        "/CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestViewerEndpoint/TestViewerEndpoint/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineDeployTestViewerEndpointF48B68EF"
-          }
-        ],
         "/CdkWorkshopPipelineStack/Pipeline/CodeBuildActionRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -224,12 +202,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "PipelineAssetsFileAsset185A67CB4"
-          }
-        ],
-        "/CdkWorkshopPipelineStack/Pipeline/Assets/FileAsset2/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineAssetsFileAsset24D2D639B"
           }
         ],
         "/CdkWorkshopPipelineStack/CDKMetadata/Default": [

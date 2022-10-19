@@ -9,7 +9,7 @@
     "aws:cdk:path": "CdkWorkshopPipelineStack/WorkshopRepo/Resource"
    }
   },
-  "WorkshopRepoCdkWorkshopPipelineStackPipeline386BAED5EventRule632E6CD8": {
+  "WorkshopRepoCdkWorkshopPipelineStackPipeline386BAED5mainEventRule27729967": {
    "Type": "AWS::Events::Rule",
    "Properties": {
     "EventPattern": {
@@ -33,7 +33,7 @@
        "referenceUpdated"
       ],
       "referenceName": [
-       "master"
+       "main"
       ]
      }
     },
@@ -66,7 +66,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "CdkWorkshopPipelineStack/WorkshopRepo/CdkWorkshopPipelineStackPipeline386BAED5EventRule/Resource"
+    "aws:cdk:path": "CdkWorkshopPipelineStack/WorkshopRepo/CdkWorkshopPipelineStackPipeline386BAED5-main-EventRule/Resource"
    }
   },
   "PipelineArtifactsBucketEncryptionKeyF5BF0670": {
@@ -421,7 +421,7 @@
            "Name"
           ]
          },
-         "BranchName": "master",
+         "BranchName": "main",
          "PollForSourceChanges": false
         },
         "Name": {
@@ -542,32 +542,6 @@
          ]
         },
         "RunOrder": 1
-       },
-       {
-        "ActionTypeId": {
-         "Category": "Build",
-         "Owner": "AWS",
-         "Provider": "CodeBuild",
-         "Version": "1"
-        },
-        "Configuration": {
-         "ProjectName": {
-          "Ref": "PipelineAssetsFileAsset24D2D639B"
-         }
-        },
-        "InputArtifacts": [
-         {
-          "Name": "SynthStep_Output"
-         }
-        ],
-        "Name": "FileAsset2",
-        "RoleArn": {
-         "Fn::GetAtt": [
-          "PipelineCodeBuildActionRole226DB0CB",
-          "Arn"
-         ]
-        },
-        "RunOrder": 1
        }
       ],
       "Name": "Assets"
@@ -582,7 +556,7 @@
          "Version": "1"
         },
         "Configuration": {
-         "StackName": "Deploy-WebService",
+         "StackName": "Dev-WebService",
          "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
          "RoleArn": {
           "Fn::Join": [
@@ -598,14 +572,14 @@
          },
          "ActionMode": "CHANGE_SET_REPLACE",
          "ChangeSetName": "PipelineChange",
-         "TemplatePath": "SynthStep_Output::assembly-CdkWorkshopPipelineStack-Deploy/CdkWorkshopPipelineStackDeployWebService590FC31C.template.json"
+         "TemplatePath": "SynthStep_Output::assembly-CdkWorkshopPipelineStack-Dev/CdkWorkshopPipelineStackDevWebServiceADCD46C8.template.json"
         },
         "InputArtifacts": [
          {
           "Name": "SynthStep_Output"
          }
         ],
-        "Name": "WebService.Prepare",
+        "Name": "Prepare",
         "RoleArn": {
          "Fn::Join": [
           "",
@@ -628,12 +602,11 @@
          "Version": "1"
         },
         "Configuration": {
-         "StackName": "Deploy-WebService",
+         "StackName": "Dev-WebService",
          "ActionMode": "CHANGE_SET_EXECUTE",
          "ChangeSetName": "PipelineChange"
         },
-        "Name": "WebService.Deploy",
-        "Namespace": "CdkWorkshopPipelineStackDeployWebService590FC31C",
+        "Name": "Deploy",
         "RoleArn": {
          "Fn::Join": [
           "",
@@ -647,63 +620,165 @@
          ]
         },
         "RunOrder": 2
-       },
-       {
-        "ActionTypeId": {
-         "Category": "Build",
-         "Owner": "AWS",
-         "Provider": "CodeBuild",
-         "Version": "1"
-        },
-        "Configuration": {
-         "ProjectName": {
-          "Ref": "PipelineDeployTestAPIGatewayEndpoint8BF7FD0A"
-         },
-         "EnvironmentVariables": "[{\"name\":\"ENDPOINT_URL\",\"type\":\"PLAINTEXT\",\"value\":\"#{CdkWorkshopPipelineStackDeployWebService590FC31C.GatewayUrl}\"}]"
-        },
-        "InputArtifacts": [
-         {
-          "Name": "c858002a54c3a585a9d305ba72dda669bab7300d64_Source"
-         }
-        ],
-        "Name": "TestAPIGatewayEndpoint",
-        "RoleArn": {
-         "Fn::GetAtt": [
-          "PipelineCodeBuildActionRole226DB0CB",
-          "Arn"
-         ]
-        },
-        "RunOrder": 3
-       },
-       {
-        "ActionTypeId": {
-         "Category": "Build",
-         "Owner": "AWS",
-         "Provider": "CodeBuild",
-         "Version": "1"
-        },
-        "Configuration": {
-         "ProjectName": {
-          "Ref": "PipelineDeployTestViewerEndpointF48B68EF"
-         },
-         "EnvironmentVariables": "[{\"name\":\"ENDPOINT_URL\",\"type\":\"PLAINTEXT\",\"value\":\"#{CdkWorkshopPipelineStackDeployWebService590FC31C.TableViewerUrl}\"}]"
-        },
-        "InputArtifacts": [
-         {
-          "Name": "c858002a54c3a585a9d305ba72dda669bab7300d64_Source"
-         }
-        ],
-        "Name": "TestViewerEndpoint",
-        "RoleArn": {
-         "Fn::GetAtt": [
-          "PipelineCodeBuildActionRole226DB0CB",
-          "Arn"
-         ]
-        },
-        "RunOrder": 3
        }
       ],
-      "Name": "Deploy"
+      "Name": "Dev"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "Qa-WebService",
+         "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+         "RoleArn": {
+          "Fn::Join": [
+           "",
+           [
+            "arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":iam::427829476435:role/cdk-hnb659fds-cfn-exec-role-427829476435-us-east-1"
+           ]
+          ]
+         },
+         "ActionMode": "CHANGE_SET_REPLACE",
+         "ChangeSetName": "PipelineChange",
+         "TemplatePath": "SynthStep_Output::assembly-CdkWorkshopPipelineStack-Qa/CdkWorkshopPipelineStackQaWebService97453B07.template.json"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "SynthStep_Output"
+         }
+        ],
+        "Name": "Prepare",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1"
+          ]
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "Qa-WebService",
+         "ActionMode": "CHANGE_SET_EXECUTE",
+         "ChangeSetName": "PipelineChange"
+        },
+        "Name": "Deploy",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1"
+          ]
+         ]
+        },
+        "RunOrder": 2
+       }
+      ],
+      "Name": "Qa"
+     },
+     {
+      "Actions": [
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "Prod-WebService",
+         "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+         "RoleArn": {
+          "Fn::Join": [
+           "",
+           [
+            "arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":iam::427829476435:role/cdk-hnb659fds-cfn-exec-role-427829476435-us-east-1"
+           ]
+          ]
+         },
+         "ActionMode": "CHANGE_SET_REPLACE",
+         "ChangeSetName": "PipelineChange",
+         "TemplatePath": "SynthStep_Output::assembly-CdkWorkshopPipelineStack-Prod/CdkWorkshopPipelineStackProdWebService83A8745B.template.json"
+        },
+        "InputArtifacts": [
+         {
+          "Name": "SynthStep_Output"
+         }
+        ],
+        "Name": "Prepare",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1"
+          ]
+         ]
+        },
+        "RunOrder": 1
+       },
+       {
+        "ActionTypeId": {
+         "Category": "Deploy",
+         "Owner": "AWS",
+         "Provider": "CloudFormation",
+         "Version": "1"
+        },
+        "Configuration": {
+         "StackName": "Prod-WebService",
+         "ActionMode": "CHANGE_SET_EXECUTE",
+         "ChangeSetName": "PipelineChange"
+        },
+        "Name": "Deploy",
+        "RoleArn": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1"
+          ]
+         ]
+        },
+        "RunOrder": 2
+       }
+      ],
+      "Name": "Prod"
      }
     ],
     "ArtifactStore": {
@@ -1121,412 +1196,6 @@
     "aws:cdk:path": "CdkWorkshopPipelineStack/Pipeline/Pipeline/Build/SynthStep/CdkBuildProject/Resource"
    }
   },
-  "PipelineDeployTestAPIGatewayEndpointRole91F8288D": {
-   "Type": "AWS::IAM::Role",
-   "Properties": {
-    "AssumeRolePolicyDocument": {
-     "Statement": [
-      {
-       "Action": "sts:AssumeRole",
-       "Effect": "Allow",
-       "Principal": {
-        "Service": "codebuild.amazonaws.com"
-       }
-      }
-     ],
-     "Version": "2012-10-17"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestAPIGatewayEndpoint/TestAPIGatewayEndpoint/Role/Resource"
-   }
-  },
-  "PipelineDeployTestAPIGatewayEndpointRoleDefaultPolicy388517F4": {
-   "Type": "AWS::IAM::Policy",
-   "Properties": {
-    "PolicyDocument": {
-     "Statement": [
-      {
-       "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-       ],
-       "Effect": "Allow",
-       "Resource": [
-        {
-         "Fn::Join": [
-          "",
-          [
-           "arn:",
-           {
-            "Ref": "AWS::Partition"
-           },
-           ":logs:us-east-1:226115143550:log-group:/aws/codebuild/",
-           {
-            "Ref": "PipelineDeployTestAPIGatewayEndpoint8BF7FD0A"
-           }
-          ]
-         ]
-        },
-        {
-         "Fn::Join": [
-          "",
-          [
-           "arn:",
-           {
-            "Ref": "AWS::Partition"
-           },
-           ":logs:us-east-1:226115143550:log-group:/aws/codebuild/",
-           {
-            "Ref": "PipelineDeployTestAPIGatewayEndpoint8BF7FD0A"
-           },
-           ":*"
-          ]
-         ]
-        }
-       ]
-      },
-      {
-       "Action": [
-        "codebuild:CreateReportGroup",
-        "codebuild:CreateReport",
-        "codebuild:UpdateReport",
-        "codebuild:BatchPutTestCases",
-        "codebuild:BatchPutCodeCoverages"
-       ],
-       "Effect": "Allow",
-       "Resource": {
-        "Fn::Join": [
-         "",
-         [
-          "arn:",
-          {
-           "Ref": "AWS::Partition"
-          },
-          ":codebuild:us-east-1:226115143550:report-group/",
-          {
-           "Ref": "PipelineDeployTestAPIGatewayEndpoint8BF7FD0A"
-          },
-          "-*"
-         ]
-        ]
-       }
-      },
-      {
-       "Action": [
-        "s3:GetObject*",
-        "s3:GetBucket*",
-        "s3:List*"
-       ],
-       "Effect": "Allow",
-       "Resource": [
-        {
-         "Fn::GetAtt": [
-          "PipelineArtifactsBucketAEA9A052",
-          "Arn"
-         ]
-        },
-        {
-         "Fn::Join": [
-          "",
-          [
-           {
-            "Fn::GetAtt": [
-             "PipelineArtifactsBucketAEA9A052",
-             "Arn"
-            ]
-           },
-           "/*"
-          ]
-         ]
-        }
-       ]
-      },
-      {
-       "Action": [
-        "kms:Decrypt",
-        "kms:DescribeKey"
-       ],
-       "Effect": "Allow",
-       "Resource": {
-        "Fn::GetAtt": [
-         "PipelineArtifactsBucketEncryptionKeyF5BF0670",
-         "Arn"
-        ]
-       }
-      },
-      {
-       "Action": [
-        "kms:Decrypt",
-        "kms:Encrypt",
-        "kms:ReEncrypt*",
-        "kms:GenerateDataKey*"
-       ],
-       "Effect": "Allow",
-       "Resource": {
-        "Fn::GetAtt": [
-         "PipelineArtifactsBucketEncryptionKeyF5BF0670",
-         "Arn"
-        ]
-       }
-      }
-     ],
-     "Version": "2012-10-17"
-    },
-    "PolicyName": "PipelineDeployTestAPIGatewayEndpointRoleDefaultPolicy388517F4",
-    "Roles": [
-     {
-      "Ref": "PipelineDeployTestAPIGatewayEndpointRole91F8288D"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestAPIGatewayEndpoint/TestAPIGatewayEndpoint/Role/DefaultPolicy/Resource"
-   }
-  },
-  "PipelineDeployTestAPIGatewayEndpoint8BF7FD0A": {
-   "Type": "AWS::CodeBuild::Project",
-   "Properties": {
-    "Artifacts": {
-     "Type": "CODEPIPELINE"
-    },
-    "Environment": {
-     "ComputeType": "BUILD_GENERAL1_SMALL",
-     "Image": "aws/codebuild/standard:5.0",
-     "ImagePullCredentialsType": "CODEBUILD",
-     "PrivilegedMode": false,
-     "Type": "LINUX_CONTAINER"
-    },
-    "ServiceRole": {
-     "Fn::GetAtt": [
-      "PipelineDeployTestAPIGatewayEndpointRole91F8288D",
-      "Arn"
-     ]
-    },
-    "Source": {
-     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"curl -Ssf $ENDPOINT_URL\",\n        \"curl -Ssf $ENDPOINT_URL/hello\",\n        \"curl -Ssf $ENDPOINT_URL/test\"\n      ]\n    }\n  }\n}",
-     "Type": "CODEPIPELINE"
-    },
-    "Cache": {
-     "Type": "NO_CACHE"
-    },
-    "Description": "Pipeline step CdkWorkshopPipelineStack/Pipeline/Deploy/TestAPIGatewayEndpoint",
-    "EncryptionKey": {
-     "Fn::GetAtt": [
-      "PipelineArtifactsBucketEncryptionKeyF5BF0670",
-      "Arn"
-     ]
-    },
-    "Name": "TestAPIGatewayEndpoint"
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestAPIGatewayEndpoint/TestAPIGatewayEndpoint/Resource"
-   }
-  },
-  "PipelineDeployTestViewerEndpointRole292A0FAA": {
-   "Type": "AWS::IAM::Role",
-   "Properties": {
-    "AssumeRolePolicyDocument": {
-     "Statement": [
-      {
-       "Action": "sts:AssumeRole",
-       "Effect": "Allow",
-       "Principal": {
-        "Service": "codebuild.amazonaws.com"
-       }
-      }
-     ],
-     "Version": "2012-10-17"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestViewerEndpoint/TestViewerEndpoint/Role/Resource"
-   }
-  },
-  "PipelineDeployTestViewerEndpointRoleDefaultPolicy847D5596": {
-   "Type": "AWS::IAM::Policy",
-   "Properties": {
-    "PolicyDocument": {
-     "Statement": [
-      {
-       "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-       ],
-       "Effect": "Allow",
-       "Resource": [
-        {
-         "Fn::Join": [
-          "",
-          [
-           "arn:",
-           {
-            "Ref": "AWS::Partition"
-           },
-           ":logs:us-east-1:226115143550:log-group:/aws/codebuild/",
-           {
-            "Ref": "PipelineDeployTestViewerEndpointF48B68EF"
-           }
-          ]
-         ]
-        },
-        {
-         "Fn::Join": [
-          "",
-          [
-           "arn:",
-           {
-            "Ref": "AWS::Partition"
-           },
-           ":logs:us-east-1:226115143550:log-group:/aws/codebuild/",
-           {
-            "Ref": "PipelineDeployTestViewerEndpointF48B68EF"
-           },
-           ":*"
-          ]
-         ]
-        }
-       ]
-      },
-      {
-       "Action": [
-        "codebuild:CreateReportGroup",
-        "codebuild:CreateReport",
-        "codebuild:UpdateReport",
-        "codebuild:BatchPutTestCases",
-        "codebuild:BatchPutCodeCoverages"
-       ],
-       "Effect": "Allow",
-       "Resource": {
-        "Fn::Join": [
-         "",
-         [
-          "arn:",
-          {
-           "Ref": "AWS::Partition"
-          },
-          ":codebuild:us-east-1:226115143550:report-group/",
-          {
-           "Ref": "PipelineDeployTestViewerEndpointF48B68EF"
-          },
-          "-*"
-         ]
-        ]
-       }
-      },
-      {
-       "Action": [
-        "s3:GetObject*",
-        "s3:GetBucket*",
-        "s3:List*"
-       ],
-       "Effect": "Allow",
-       "Resource": [
-        {
-         "Fn::GetAtt": [
-          "PipelineArtifactsBucketAEA9A052",
-          "Arn"
-         ]
-        },
-        {
-         "Fn::Join": [
-          "",
-          [
-           {
-            "Fn::GetAtt": [
-             "PipelineArtifactsBucketAEA9A052",
-             "Arn"
-            ]
-           },
-           "/*"
-          ]
-         ]
-        }
-       ]
-      },
-      {
-       "Action": [
-        "kms:Decrypt",
-        "kms:DescribeKey"
-       ],
-       "Effect": "Allow",
-       "Resource": {
-        "Fn::GetAtt": [
-         "PipelineArtifactsBucketEncryptionKeyF5BF0670",
-         "Arn"
-        ]
-       }
-      },
-      {
-       "Action": [
-        "kms:Decrypt",
-        "kms:Encrypt",
-        "kms:ReEncrypt*",
-        "kms:GenerateDataKey*"
-       ],
-       "Effect": "Allow",
-       "Resource": {
-        "Fn::GetAtt": [
-         "PipelineArtifactsBucketEncryptionKeyF5BF0670",
-         "Arn"
-        ]
-       }
-      }
-     ],
-     "Version": "2012-10-17"
-    },
-    "PolicyName": "PipelineDeployTestViewerEndpointRoleDefaultPolicy847D5596",
-    "Roles": [
-     {
-      "Ref": "PipelineDeployTestViewerEndpointRole292A0FAA"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestViewerEndpoint/TestViewerEndpoint/Role/DefaultPolicy/Resource"
-   }
-  },
-  "PipelineDeployTestViewerEndpointF48B68EF": {
-   "Type": "AWS::CodeBuild::Project",
-   "Properties": {
-    "Artifacts": {
-     "Type": "CODEPIPELINE"
-    },
-    "Environment": {
-     "ComputeType": "BUILD_GENERAL1_SMALL",
-     "Image": "aws/codebuild/standard:5.0",
-     "ImagePullCredentialsType": "CODEBUILD",
-     "PrivilegedMode": false,
-     "Type": "LINUX_CONTAINER"
-    },
-    "ServiceRole": {
-     "Fn::GetAtt": [
-      "PipelineDeployTestViewerEndpointRole292A0FAA",
-      "Arn"
-     ]
-    },
-    "Source": {
-     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"build\": {\n      \"commands\": [\n        \"curl -Ssf $ENDPOINT_URL\"\n      ]\n    }\n  }\n}",
-     "Type": "CODEPIPELINE"
-    },
-    "Cache": {
-     "Type": "NO_CACHE"
-    },
-    "Description": "Pipeline step CdkWorkshopPipelineStack/Pipeline/Deploy/TestViewerEndpoint",
-    "EncryptionKey": {
-     "Fn::GetAtt": [
-      "PipelineArtifactsBucketEncryptionKeyF5BF0670",
-      "Arn"
-     ]
-    },
-    "Name": "TestViewerEndpoint"
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkWorkshopPipelineStack/Pipeline/Pipeline/Deploy/TestViewerEndpoint/TestViewerEndpoint/Resource"
-   }
-  },
   "PipelineCodeBuildActionRole226DB0CB": {
    "Type": "AWS::IAM::Role",
    "Properties": {
@@ -1606,48 +1275,6 @@
        "Resource": {
         "Fn::GetAtt": [
          "PipelineAssetsFileAsset185A67CB4",
-         "Arn"
-        ]
-       }
-      },
-      {
-       "Action": [
-        "codebuild:BatchGetBuilds",
-        "codebuild:StartBuild",
-        "codebuild:StopBuild"
-       ],
-       "Effect": "Allow",
-       "Resource": {
-        "Fn::GetAtt": [
-         "PipelineAssetsFileAsset24D2D639B",
-         "Arn"
-        ]
-       }
-      },
-      {
-       "Action": [
-        "codebuild:BatchGetBuilds",
-        "codebuild:StartBuild",
-        "codebuild:StopBuild"
-       ],
-       "Effect": "Allow",
-       "Resource": {
-        "Fn::GetAtt": [
-         "PipelineDeployTestAPIGatewayEndpoint8BF7FD0A",
-         "Arn"
-        ]
-       }
-      },
-      {
-       "Action": [
-        "codebuild:BatchGetBuilds",
-        "codebuild:StartBuild",
-        "codebuild:StopBuild"
-       ],
-       "Effect": "Allow",
-       "Resource": {
-        "Fn::GetAtt": [
-         "PipelineDeployTestViewerEndpointF48B68EF",
          "Arn"
         ]
        }
@@ -2073,7 +1700,7 @@
      ]
     },
     "Source": {
-     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-CdkWorkshopPipelineStack-Deploy/CdkWorkshopPipelineStackDeployWebService590FC31C.assets.json\\\" --verbose publish \\\"ad3302cb661010b2b46260e3336a5630cca8b97f52b36307c1ebbce788abc326:427829476435-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-CdkWorkshopPipelineStack-Dev/CdkWorkshopPipelineStackDevWebServiceADCD46C8.assets.json\\\" --verbose publish \\\"ad3302cb661010b2b46260e3336a5630cca8b97f52b36307c1ebbce788abc326:427829476435-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
      "Type": "CODEPIPELINE"
     },
     "Cache": {
@@ -2089,44 +1716,6 @@
    },
    "Metadata": {
     "aws:cdk:path": "CdkWorkshopPipelineStack/Pipeline/Assets/FileAsset1/Resource"
-   }
-  },
-  "PipelineAssetsFileAsset24D2D639B": {
-   "Type": "AWS::CodeBuild::Project",
-   "Properties": {
-    "Artifacts": {
-     "Type": "CODEPIPELINE"
-    },
-    "Environment": {
-     "ComputeType": "BUILD_GENERAL1_SMALL",
-     "Image": "aws/codebuild/standard:5.0",
-     "ImagePullCredentialsType": "CODEBUILD",
-     "PrivilegedMode": false,
-     "Type": "LINUX_CONTAINER"
-    },
-    "ServiceRole": {
-     "Fn::GetAtt": [
-      "PipelineAssetsFileRole59943A77",
-      "Arn"
-     ]
-    },
-    "Source": {
-     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-CdkWorkshopPipelineStack-Deploy/CdkWorkshopPipelineStackDeployWebService590FC31C.assets.json\\\" --verbose publish \\\"e2d9f4c587faa240510bb9cd1c0afe3112663d6336529432a852f5e452cf6456:427829476435-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
-     "Type": "CODEPIPELINE"
-    },
-    "Cache": {
-     "Type": "NO_CACHE"
-    },
-    "Description": "Pipeline step CdkWorkshopPipelineStack/Pipeline/Assets/FileAsset2",
-    "EncryptionKey": {
-     "Fn::GetAtt": [
-      "PipelineArtifactsBucketEncryptionKeyF5BF0670",
-      "Arn"
-     ]
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "CdkWorkshopPipelineStack/Pipeline/Assets/FileAsset2/Resource"
    }
   },
   "CDKMetadata": {
