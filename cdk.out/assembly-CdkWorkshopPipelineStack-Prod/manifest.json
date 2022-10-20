@@ -17,7 +17,7 @@
         "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-cfn-exec-role-427829476435-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-427829476435-us-east-1/c5ca43565a92d9f8192fd9d36d592acc4f113c9811536751b461673db50650e5.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-427829476435-us-east-1/88748f2830588c4d6afd2b3a3c5b0ef97acb8ccd4e8b031d6e53a51333505780.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -38,6 +38,24 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "Bucket83908E77"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Prod/WebService/Bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketPolicyE9A3008A"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Prod/WebService/myDist/Origin1/S3Origin/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "myDistOrigin1S3Origin5717909C"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Prod/WebService/myDist/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "myDist9DB766F3"
           }
         ],
         "/CdkWorkshopPipelineStack/Prod/WebService/HelloHandler/ServiceRole/Resource": [

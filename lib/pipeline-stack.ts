@@ -10,14 +10,12 @@ export class WorkshopPipelineStack extends cdk.Stack {
 
     // This creates a new CodeCommit repository called 'WorkshopRepo'
     const repo = new codecommit.Repository(this, 'WorkshopRepo', {
-      repositoryName: "WorkshopRepo"
+      repositoryName: "clout-project-architecture"
     });
 
-    // The basic pipeline declaration. This sets the initial structure
-    // of our pipeline
-
+    // The basic pipeline declaration. This sets the initial structureof our pipeline
     const pipeline = new CodePipeline(this, 'Pipeline', {
-      pipelineName: 'WorkshopPipeline',
+      pipelineName: 'clout-project-pipeline',
       crossAccountKeys: true,
       synth: new CodeBuildStep('SynthStep', {
         input: CodePipelineSource.codeCommit(repo, 'main'),
@@ -35,7 +33,7 @@ export class WorkshopPipelineStack extends cdk.Stack {
 
     const qa = new WorkshopPipelineStage(this, 'Qa',{
       env: {
-        account: "427829476435",
+        account: "782449017468",
         region: "us-east-1"
       }
     });
@@ -47,7 +45,7 @@ export class WorkshopPipelineStack extends cdk.Stack {
     });
     const dev = new WorkshopPipelineStage(this, 'Dev',{
       env: {
-        account: "427829476435",
+        account: "366076513585",
         region: "us-east-1"
       }
     });

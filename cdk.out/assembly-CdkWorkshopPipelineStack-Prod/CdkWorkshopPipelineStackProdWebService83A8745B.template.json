@@ -11,6 +11,102 @@
     "aws:cdk:path": "CdkWorkshopPipelineStack/Prod/WebService/Bucket/Resource"
    }
   },
+  "BucketPolicyE9A3008A": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "Bucket83908E77"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Principal": {
+        "CanonicalUser": {
+         "Fn::GetAtt": [
+          "myDistOrigin1S3Origin5717909C",
+          "S3CanonicalUserId"
+         ]
+        }
+       },
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "Bucket83908E77",
+            "Arn"
+           ]
+          },
+          "/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkWorkshopPipelineStack/Prod/WebService/Bucket/Policy/Resource"
+   }
+  },
+  "myDistOrigin1S3Origin5717909C": {
+   "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+   "Properties": {
+    "CloudFrontOriginAccessIdentityConfig": {
+     "Comment": "Identity for CdkWorkshopPipelineStackProdWebServicemyDistOrigin1672F0F05"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkWorkshopPipelineStack/Prod/WebService/myDist/Origin1/S3Origin/Resource"
+   }
+  },
+  "myDist9DB766F3": {
+   "Type": "AWS::CloudFront::Distribution",
+   "Properties": {
+    "DistributionConfig": {
+     "DefaultCacheBehavior": {
+      "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+      "Compress": true,
+      "TargetOriginId": "CdkWorkshopPipelineStackProdWebServicemyDistOrigin1672F0F05",
+      "ViewerProtocolPolicy": "allow-all"
+     },
+     "Enabled": true,
+     "HttpVersion": "http2",
+     "IPV6Enabled": true,
+     "Origins": [
+      {
+       "DomainName": {
+        "Fn::GetAtt": [
+         "Bucket83908E77",
+         "RegionalDomainName"
+        ]
+       },
+       "Id": "CdkWorkshopPipelineStackProdWebServicemyDistOrigin1672F0F05",
+       "S3OriginConfig": {
+        "OriginAccessIdentity": {
+         "Fn::Join": [
+          "",
+          [
+           "origin-access-identity/cloudfront/",
+           {
+            "Ref": "myDistOrigin1S3Origin5717909C"
+           }
+          ]
+         ]
+        }
+       }
+      }
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CdkWorkshopPipelineStack/Prod/WebService/myDist/Resource"
+   }
+  },
   "HelloHandlerServiceRole11EF7C63": {
    "Type": "AWS::IAM::Role",
    "Properties": {
@@ -50,7 +146,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-427829476435-us-east-1",
-     "S3Key": "ad3302cb661010b2b46260e3336a5630cca8b97f52b36307c1ebbce788abc326.zip"
+     "S3Key": "095f99b8e1797037e44827be4302a66b72c59402418009da5a0f61f570cdd83a.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -66,7 +162,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "CdkWorkshopPipelineStack/Prod/WebService/HelloHandler/Resource",
-    "aws:asset:path": "..\\asset.ad3302cb661010b2b46260e3336a5630cca8b97f52b36307c1ebbce788abc326",
+    "aws:asset:path": "..\\asset.095f99b8e1797037e44827be4302a66b72c59402418009da5a0f61f570cdd83a",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -74,7 +170,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zWNTQ6CMBBGz+K+jAKRvZh4ADwAGcpIhp82YVpdNL27FHT1Xr685CugqOBywo9kup+ymTsIT4d6UtvUBikh1F5P5NT9ZX52oEahqGZcuh4hPLzRjq1J2d+jYlwgNHamNCdGJWWLIuQEbglR7dguBzbDnpFYv+otNbYnGOX8zivIr5CfRmHOVm8cLwTNwS98/YKtwQAAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/3WPQU4DMQxFz9J9xjCt6L4tqsQKVA5QZRy3cieTSHECQlHuTjJTBBtWz/76/rbXsN7C40p/Sodm7CwPkN+jxlFV6ZxlA3mfcKSoDhd3rxa8ecv49Svf+6XZa6Gi0PpkLsG7CPmZJQYeUmTv1GvgK7sdIom8GHKR45x0aAPHNvCf429MUVZPg9GQj8nhHFwdP3VRrCfIJ2+pyY1FyeasRSgK7BqKmlEfrsuus43Ep4DV6rwhuMnDR7+F/gn61U2Yu5DqKRPBaeE3fXYnNz8BAAA="
    },
    "Metadata": {
     "aws:cdk:path": "CdkWorkshopPipelineStack/Prod/WebService/CDKMetadata/Default"

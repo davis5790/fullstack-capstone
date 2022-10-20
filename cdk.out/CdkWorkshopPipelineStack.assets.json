@@ -1,7 +1,7 @@
 {
   "version": "20.0.0",
   "files": {
-    "16eab772e440667580ecb5288bc53ff2437b341eb9415b4c2c2113364ba5a485": {
+    "e0cdafd5291f20b469e953ef5aed48017884d4ba164c812472e04778065dd3b1": {
       "source": {
         "path": "CdkWorkshopPipelineStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "226115143550-us-east-1": {
           "bucketName": "cdk-hnb659fds-assets-226115143550-us-east-1",
-          "objectKey": "16eab772e440667580ecb5288bc53ff2437b341eb9415b4c2c2113364ba5a485.json",
+          "objectKey": "e0cdafd5291f20b469e953ef5aed48017884d4ba164c812472e04778065dd3b1.json",
           "region": "us-east-1",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::226115143550:role/cdk-hnb659fds-file-publishing-role-226115143550-us-east-1"
         }

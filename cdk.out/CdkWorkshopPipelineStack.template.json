@@ -3,7 +3,7 @@
   "WorkshopRepoE6F95803": {
    "Type": "AWS::CodeCommit::Repository",
    "Properties": {
-    "RepositoryName": "WorkshopRepo"
+    "RepositoryName": "clout-project-architecture"
    },
    "Metadata": {
     "aws:cdk:path": "CdkWorkshopPipelineStack/WorkshopRepo/Resource"
@@ -108,6 +108,50 @@
            {
             "Ref": "AWS::Partition"
            },
+           ":iam::366076513585:role/cdk-hnb659fds-deploy-role-366076513585-us-east-1"
+          ]
+         ]
+        }
+       },
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::782449017468:role/cdk-hnb659fds-deploy-role-782449017468-us-east-1"
+          ]
+         ]
+        }
+       },
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
            ":iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1"
           ]
          ]
@@ -191,6 +235,94 @@
        "Effect": "Deny",
        "Principal": {
         "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "PipelineArtifactsBucketAEA9A052",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "PipelineArtifactsBucketAEA9A052",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::366076513585:role/cdk-hnb659fds-deploy-role-366076513585-us-east-1"
+          ]
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "PipelineArtifactsBucketAEA9A052",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "PipelineArtifactsBucketAEA9A052",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":iam::782449017468:role/cdk-hnb659fds-deploy-role-782449017468-us-east-1"
+          ]
+         ]
+        }
        },
        "Resource": [
         {
@@ -362,6 +494,38 @@
         "Fn::GetAtt": [
          "PipelineCodeBuildActionRole226DB0CB",
          "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":iam::366076513585:role/cdk-hnb659fds-deploy-role-366076513585-us-east-1"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":iam::782449017468:role/cdk-hnb659fds-deploy-role-782449017468-us-east-1"
+         ]
         ]
        }
       },
@@ -566,7 +730,7 @@
             {
              "Ref": "AWS::Partition"
             },
-            ":iam::427829476435:role/cdk-hnb659fds-cfn-exec-role-427829476435-us-east-1"
+            ":iam::366076513585:role/cdk-hnb659fds-cfn-exec-role-366076513585-us-east-1"
            ]
           ]
          },
@@ -588,7 +752,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1"
+           ":iam::366076513585:role/cdk-hnb659fds-deploy-role-366076513585-us-east-1"
           ]
          ]
         },
@@ -615,7 +779,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1"
+           ":iam::366076513585:role/cdk-hnb659fds-deploy-role-366076513585-us-east-1"
           ]
          ]
         },
@@ -644,7 +808,7 @@
             {
              "Ref": "AWS::Partition"
             },
-            ":iam::427829476435:role/cdk-hnb659fds-cfn-exec-role-427829476435-us-east-1"
+            ":iam::782449017468:role/cdk-hnb659fds-cfn-exec-role-782449017468-us-east-1"
            ]
           ]
          },
@@ -666,7 +830,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1"
+           ":iam::782449017468:role/cdk-hnb659fds-deploy-role-782449017468-us-east-1"
           ]
          ]
         },
@@ -693,7 +857,7 @@
            {
             "Ref": "AWS::Partition"
            },
-           ":iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1"
+           ":iam::782449017468:role/cdk-hnb659fds-deploy-role-782449017468-us-east-1"
           ]
          ]
         },
@@ -796,7 +960,7 @@
      },
      "Type": "S3"
     },
-    "Name": "WorkshopPipeline",
+    "Name": "clout-project-pipeline",
     "RestartExecutionOnUpdate": true
    },
    "DependsOn": [
@@ -1514,7 +1678,7 @@
       "Arn"
      ]
     },
-    "Name": "WorkshopPipeline-selfupdate"
+    "Name": "clout-project-pipeline-selfupdate"
    },
    "Metadata": {
     "aws:cdk:path": "CdkWorkshopPipelineStack/Pipeline/UpdatePipeline/SelfMutation/Resource"
@@ -1619,6 +1783,12 @@
        "Effect": "Allow",
        "Resource": [
         {
+         "Fn::Sub": "arn:${AWS::Partition}:iam::366076513585:role/cdk-hnb659fds-file-publishing-role-366076513585-us-east-1"
+        },
+        {
+         "Fn::Sub": "arn:${AWS::Partition}:iam::782449017468:role/cdk-hnb659fds-file-publishing-role-782449017468-us-east-1"
+        },
+        {
          "Fn::Sub": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-file-publishing-role-427829476435-us-east-1"
         }
        ]
@@ -1700,7 +1870,7 @@
      ]
     },
     "Source": {
-     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-CdkWorkshopPipelineStack-Dev/CdkWorkshopPipelineStackDevWebServiceADCD46C8.assets.json\\\" --verbose publish \\\"ad3302cb661010b2b46260e3336a5630cca8b97f52b36307c1ebbce788abc326:427829476435-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g cdk-assets@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk-assets --path \\\"assembly-CdkWorkshopPipelineStack-Dev/CdkWorkshopPipelineStackDevWebServiceADCD46C8.assets.json\\\" --verbose publish \\\"095f99b8e1797037e44827be4302a66b72c59402418009da5a0f61f570cdd83a:366076513585-us-east-1\\\"\",\n        \"cdk-assets --path \\\"assembly-CdkWorkshopPipelineStack-Qa/CdkWorkshopPipelineStackQaWebService97453B07.assets.json\\\" --verbose publish \\\"095f99b8e1797037e44827be4302a66b72c59402418009da5a0f61f570cdd83a:782449017468-us-east-1\\\"\",\n        \"cdk-assets --path \\\"assembly-CdkWorkshopPipelineStack-Prod/CdkWorkshopPipelineStackProdWebService83A8745B.assets.json\\\" --verbose publish \\\"095f99b8e1797037e44827be4302a66b72c59402418009da5a0f61f570cdd83a:427829476435-us-east-1\\\"\"\n      ]\n    }\n  }\n}",
      "Type": "CODEPIPELINE"
     },
     "Cache": {

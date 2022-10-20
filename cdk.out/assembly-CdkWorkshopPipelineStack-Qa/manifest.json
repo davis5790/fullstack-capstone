@@ -11,20 +11,20 @@
     },
     "CdkWorkshopPipelineStackQaWebService97453B07": {
       "type": "aws:cloudformation:stack",
-      "environment": "aws://427829476435/us-east-1",
+      "environment": "aws://782449017468/us-east-1",
       "properties": {
         "templateFile": "CdkWorkshopPipelineStackQaWebService97453B07.template.json",
         "validateOnSynth": true,
-        "assumeRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1",
-        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-cfn-exec-role-427829476435-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-427829476435-us-east-1/da4881f011894dbfea638fa96a02402099acdce6340aeb312b800b39321d1f9d.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::782449017468:role/cdk-hnb659fds-deploy-role-782449017468-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::782449017468:role/cdk-hnb659fds-cfn-exec-role-782449017468-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-782449017468-us-east-1/cd4c7dc3644aaf5b242fbac64ff8ca1ecbd60eb0f04f7c34a6a9e172eefd6a00.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
           "CdkWorkshopPipelineStackQaWebService97453B07.assets"
         ],
         "lookupRole": {
-          "arn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-lookup-role-427829476435-us-east-1",
+          "arn": "arn:${AWS::Partition}:iam::782449017468:role/cdk-hnb659fds-lookup-role-782449017468-us-east-1",
           "requiresBootstrapStackVersion": 8,
           "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
         },
@@ -38,6 +38,24 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "Bucket83908E77"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Qa/WebService/Bucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketPolicyE9A3008A"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Qa/WebService/myDist/Origin1/S3Origin/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "myDistOrigin1S3Origin5717909C"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/Qa/WebService/myDist/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "myDist9DB766F3"
           }
         ],
         "/CdkWorkshopPipelineStack/Qa/WebService/HelloHandler/ServiceRole/Resource": [

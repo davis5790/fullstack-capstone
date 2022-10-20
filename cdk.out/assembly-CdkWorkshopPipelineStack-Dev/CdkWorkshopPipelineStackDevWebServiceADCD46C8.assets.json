@@ -1,31 +1,31 @@
 {
   "version": "20.0.0",
   "files": {
-    "ad3302cb661010b2b46260e3336a5630cca8b97f52b36307c1ebbce788abc326": {
+    "095f99b8e1797037e44827be4302a66b72c59402418009da5a0f61f570cdd83a": {
       "source": {
-        "path": "..\\asset.ad3302cb661010b2b46260e3336a5630cca8b97f52b36307c1ebbce788abc326",
+        "path": "..\\asset.095f99b8e1797037e44827be4302a66b72c59402418009da5a0f61f570cdd83a",
         "packaging": "zip"
       },
       "destinations": {
-        "427829476435-us-east-1": {
-          "bucketName": "cdk-hnb659fds-assets-427829476435-us-east-1",
-          "objectKey": "ad3302cb661010b2b46260e3336a5630cca8b97f52b36307c1ebbce788abc326.zip",
+        "366076513585-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-366076513585-us-east-1",
+          "objectKey": "095f99b8e1797037e44827be4302a66b72c59402418009da5a0f61f570cdd83a.zip",
           "region": "us-east-1",
-          "assumeRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-file-publishing-role-427829476435-us-east-1"
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::366076513585:role/cdk-hnb659fds-file-publishing-role-366076513585-us-east-1"
         }
       }
     },
-    "a2e07af8ffe8f825768c93b99f41d8301e3a955d8dc6fa50d4b8a3769119c87a": {
+    "a70997007a38060a8acec931f36e331a89fbc1a0bb9cc9914440bf4efc57b09e": {
       "source": {
         "path": "CdkWorkshopPipelineStackDevWebServiceADCD46C8.template.json",
         "packaging": "file"
       },
       "destinations": {
-        "427829476435-us-east-1": {
-          "bucketName": "cdk-hnb659fds-assets-427829476435-us-east-1",
-          "objectKey": "a2e07af8ffe8f825768c93b99f41d8301e3a955d8dc6fa50d4b8a3769119c87a.json",
+        "366076513585-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-366076513585-us-east-1",
+          "objectKey": "a70997007a38060a8acec931f36e331a89fbc1a0bb9cc9914440bf4efc57b09e.json",
           "region": "us-east-1",
-          "assumeRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-file-publishing-role-427829476435-us-east-1"
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::366076513585:role/cdk-hnb659fds-file-publishing-role-366076513585-us-east-1"
         }
       }
     }
