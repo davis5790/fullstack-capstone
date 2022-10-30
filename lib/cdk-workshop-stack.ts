@@ -63,7 +63,8 @@ export class CdkWorkshopStack extends cdk.Stack {
             }), ///nick's ec2
             minCapacity: frontendProps.autoscaling.minCapacity,
             maxCapacity: frontendProps.autoscaling.maxCapacity,
-            vpcSubnets: privateSubnets,
+            vpcSubnets: publicSubnets,
+            associatePublicIpAddress: true,
             keyName: `clout-bastion-${env}`,
             updatePolicy: autoscaling.UpdatePolicy.replacingUpdate(),
             allowAllOutbound: false,
