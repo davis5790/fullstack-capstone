@@ -6,6 +6,7 @@ import { CodeBuildStep, CodePipeline, CodePipelineSource } from "aws-cdk-lib/pip
 import { AutoScalingAction } from 'aws-cdk-lib/aws-cloudwatch-actions';
 import { InstanceClass, InstanceType, InstanceSize } from 'aws-cdk-lib/aws-ec2';
 import * as ec2 from "aws-cdk-lib/aws-ec2";
+import { Asset } from 'aws-cdk-lib/aws-s3-assets';
 
 export class WorkshopPipelineStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {

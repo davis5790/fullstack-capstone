@@ -18,6 +18,7 @@ import { BucketDeployment, Source } from "@aws-cdk/aws-s3-deployment";
 import * as path from "path";
 import { Distribution, OriginAccessIdentity } from "@aws-cdk/aws-cloudfront";
 import { S3Origin } from "@aws-cdk/aws-cloudfront-origins";
+import { Asset } from 'aws-cdk-lib/aws-s3-assets';
 
 export interface FrontendProps extends cdk.StackProps {
     autoscaling: {
@@ -30,13 +31,25 @@ export class CdkWorkshopStack extends cdk.Stack {
 
     constructor(scope: Construct, id: string, env: string, frontendProps: FrontendProps) {
         super(scope, id, frontendProps);
+        const userData = ec2.UserData.forLinux()
+        const webBuild = new Asset(this, `web-build-${env}`, {
+            path: 'test-app'
+        });
+        userData.addS3DownloadCommand({
+            bucket: webBuild.bucket,
+            bucketKey: webBuild.s3ObjectKey,
+            localFile: "/home/ubuntu/helloworld"
+        })
 
+        userData.addCommands("sudo apt install unzip")
+        userData.addCommands(`unzip /home/ubuntu/helloworld/${webBuild.s3ObjectKey}`)
+        userData.addCommands('sudo systemctl restart helloworld')
         const vpc = new ec2.Vpc(this, 'clout-vpc', {
-         }) //creates a VPC
+        }) //creates a VPC
 
         const privateSubnets = vpc.selectSubnets({
             subnetType: ec2.SubnetType.PRIVATE_WITH_NAT
-        }); 
+        });
 
         const publicSubnets = vpc.selectSubnets({
             subnetType: ec2.SubnetType.PUBLIC
@@ -45,8 +58,9 @@ export class CdkWorkshopStack extends cdk.Stack {
         const cloutComputingAsg = new autoscaling.AutoScalingGroup(this, "cloutfrontend-asg", {
             vpc: vpc,
             instanceType: frontendProps.autoscaling.instanceType,
-            machineImage: new ec2.GenericLinuxImage({"us-east-1": "ami-0d837fa72073ab772"}), ///nick's ec2
-                //userData: userData // do i want to use cloutclout userdata?
+            machineImage: new ec2.GenericLinuxImage({ "us-east-1": "ami-0d837fa72073ab772" },{
+                userData: userData
+            }), ///nick's ec2
             minCapacity: frontendProps.autoscaling.minCapacity,
             maxCapacity: frontendProps.autoscaling.maxCapacity,
             vpcSubnets: privateSubnets,
@@ -54,6 +68,8 @@ export class CdkWorkshopStack extends cdk.Stack {
             updatePolicy: autoscaling.UpdatePolicy.replacingUpdate(),
             allowAllOutbound: false,
         });
+
+        webBuild.bucket.grantRead(cloutComputingAsg);
 
         const cloutFrontendAlb = new alb.ApplicationLoadBalancer(this, "cloutfrontend-alb", {
             vpc: vpc,
@@ -70,8 +86,6 @@ export class CdkWorkshopStack extends cdk.Stack {
             targets: [cloutComputingAsg],
             // healthCheck: {
             //     enabled: true,
-            //     // requesting / upsets episerver as it cannot resolve a site based on host header
-            //     path: "/status",
             //     healthyHttpCodes: "200"
             // },
         })
