@@ -2,7 +2,7 @@ from flask import Flask,render_template,request
 import requests
  
 app = Flask(__name__)
-app.config["DEBUG"] = True
+#app.config["DEBUG"] = True
  
 @app.route('/form')
 def form():
@@ -29,4 +29,5 @@ def data():
     return render_template('data.html', info = info)
  
  
-app.run(host='0.0.0.0', port=80)
+app.run()
+#app.run(host='0.0.0.0', port=80)

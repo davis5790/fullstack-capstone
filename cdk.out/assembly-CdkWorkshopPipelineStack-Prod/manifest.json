@@ -1,95 +1,323 @@
 {
   "version": "20.0.0",
   "artifacts": {
-    "CdkWorkshopPipelineStackProdWebService83A8745B.assets": {
+    "CdkWorkshopPipelineStackprodfrontendB63BD8AD.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
-        "file": "CdkWorkshopPipelineStackProdWebService83A8745B.assets.json",
+        "file": "CdkWorkshopPipelineStackprodfrontendB63BD8AD.assets.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
       }
     },
-    "CdkWorkshopPipelineStackProdWebService83A8745B": {
+    "CdkWorkshopPipelineStackprodfrontendB63BD8AD": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://427829476435/us-east-1",
       "properties": {
-        "templateFile": "CdkWorkshopPipelineStackProdWebService83A8745B.template.json",
+        "templateFile": "CdkWorkshopPipelineStackprodfrontendB63BD8AD.template.json",
         "validateOnSynth": true,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-deploy-role-427829476435-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-cfn-exec-role-427829476435-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-427829476435-us-east-1/88748f2830588c4d6afd2b3a3c5b0ef97acb8ccd4e8b031d6e53a51333505780.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-427829476435-us-east-1/a9cd76fd1dea2b37a653fdd1f921d620635ef433554f0243a4f35a160db2cca8.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
-          "CdkWorkshopPipelineStackProdWebService83A8745B.assets"
+          "CdkWorkshopPipelineStackprodfrontendB63BD8AD.assets"
         ],
         "lookupRole": {
           "arn": "arn:${AWS::Partition}:iam::427829476435:role/cdk-hnb659fds-lookup-role-427829476435-us-east-1",
           "requiresBootstrapStackVersion": 8,
           "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
         },
-        "stackName": "Prod-WebService"
+        "stackName": "prod-frontend"
       },
       "dependencies": [
-        "CdkWorkshopPipelineStackProdWebService83A8745B.assets"
+        "CdkWorkshopPipelineStackprodfrontendB63BD8AD.assets"
       ],
       "metadata": {
-        "/CdkWorkshopPipelineStack/Prod/WebService/Bucket/Resource": [
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "Bucket83908E77"
+            "data": "cloutvpc44C6E7E0"
           }
         ],
-        "/CdkWorkshopPipelineStack/Prod/WebService/Bucket/Policy/Resource": [
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet1/Subnet": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "BucketPolicyE9A3008A"
+            "data": "cloutvpcPublicSubnet1Subnet4B2E835C"
           }
         ],
-        "/CdkWorkshopPipelineStack/Prod/WebService/myDist/Origin1/S3Origin/Resource": [
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet1/RouteTable": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "myDistOrigin1S3Origin5717909C"
+            "data": "cloutvpcPublicSubnet1RouteTable54FC31D8"
           }
         ],
-        "/CdkWorkshopPipelineStack/Prod/WebService/myDist/Resource": [
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet1/RouteTableAssociation": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "myDist9DB766F3"
+            "data": "cloutvpcPublicSubnet1RouteTableAssociationDDE4C3F5"
           }
         ],
-        "/CdkWorkshopPipelineStack/Prod/WebService/HelloHandler/ServiceRole/Resource": [
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet1/DefaultRoute": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "HelloHandlerServiceRole11EF7C63"
+            "data": "cloutvpcPublicSubnet1DefaultRoute3B4CED05"
           }
         ],
-        "/CdkWorkshopPipelineStack/Prod/WebService/HelloHandler/Resource": [
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet1/EIP": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "HelloHandler2E4FBA4D"
+            "data": "cloutvpcPublicSubnet1EIP8FDCEF24"
           }
         ],
-        "/CdkWorkshopPipelineStack/Prod/WebService/CDKMetadata/Default": [
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet1NATGatewayFC94095D"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet2Subnet022C5C52"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet2RouteTable894C3633"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet2RouteTableAssociationB7D70D6B"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet2DefaultRoute75ECCEEE"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet2EIP6FA15479"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet2NATGatewayD75F30DB"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet3Subnet9A57BE3D"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet3RouteTableD01DFCE0"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet3RouteTableAssociation87A6047B"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet3DefaultRouteEF6D0240"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet3/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet3EIP7CBEF98B"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PublicSubnet3/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPublicSubnet3NATGateway9E435AB6"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet1SubnetD40EA41D"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet1RouteTableAF6AB753"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet1RouteTableAssociationAEA05314"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet1DefaultRoute105BC157"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet2Subnet03DCCC19"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet2RouteTableCA7A9F7C"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet2RouteTableAssociationCB998E40"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet2DefaultRouteEC0E42AF"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet3Subnet0CA55C91"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet3RouteTable3378CA5A"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet3RouteTableAssociationC458B31E"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/PrivateSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcPrivateSubnet3DefaultRoute5E44E45D"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcIGWA4C4743E"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/clout-vpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutvpcVPCGW656931A3"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-asg/InstanceSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendasgInstanceSecurityGroup42302A87"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-asg/InstanceSecurityGroup/from CdkWorkshopPipelineStackprodfrontendcloutfrontendalbSecurityGroup52AD8AEC:80": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendasgInstanceSecurityGroupfromCdkWorkshopPipelineStackprodfrontendcloutfrontendalbSecurityGroup52AD8AEC80907FCCFB"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-asg/InstanceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendasgInstanceRole6E44A99B"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-asg/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendasgInstanceProfile10132DFA"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-asg/LaunchConfig": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendasgLaunchConfig9CE6D806"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-asg/ASG": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendasgASG488B49C0"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-alb/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendalbE8DD3F36"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-alb/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendalbSecurityGroup97324890"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-alb/SecurityGroup/to CdkWorkshopPipelineStackprodfrontendcloutfrontendasgInstanceSecurityGroup138EE8F2:80": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendalbSecurityGrouptoCdkWorkshopPipelineStackprodfrontendcloutfrontendasgInstanceSecurityGroup138EE8F280F6DAC40E"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-alb/cloutfrontend-listener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendalbcloutfrontendlistener6EF25590"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/cloutfrontend-alb/cloutfrontend-listener/cloutfrontend-targetsGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cloutfrontendalbcloutfrontendlistenercloutfrontendtargetsGroup4E70BE46"
+          }
+        ],
+        "/CdkWorkshopPipelineStack/prod/frontend/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata"
           }
         ],
-        "/CdkWorkshopPipelineStack/Prod/WebService/BootstrapVersion": [
+        "/CdkWorkshopPipelineStack/prod/frontend/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BootstrapVersion"
           }
         ],
-        "/CdkWorkshopPipelineStack/Prod/WebService/CheckBootstrapVersion": [
+        "/CdkWorkshopPipelineStack/prod/frontend/CheckBootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
         ]
       },
-      "displayName": "CdkWorkshopPipelineStack/Prod/WebService"
+      "displayName": "CdkWorkshopPipelineStack/prod/frontend"
     }
   }
 }

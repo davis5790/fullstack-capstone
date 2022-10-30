@@ -1,25 +1,25 @@
 {
   "version": "20.0.0",
   "artifacts": {
-    "assembly-CdkWorkshopPipelineStack-Qa": {
+    "assembly-CdkWorkshopPipelineStack-qa": {
       "type": "cdk:cloud-assembly",
       "properties": {
-        "directoryName": "assembly-CdkWorkshopPipelineStack-Qa",
-        "displayName": "CdkWorkshopPipelineStack/Qa"
+        "directoryName": "assembly-CdkWorkshopPipelineStack-qa",
+        "displayName": "CdkWorkshopPipelineStack/qa"
       }
     },
-    "assembly-CdkWorkshopPipelineStack-Prod": {
+    "assembly-CdkWorkshopPipelineStack-prod": {
       "type": "cdk:cloud-assembly",
       "properties": {
-        "directoryName": "assembly-CdkWorkshopPipelineStack-Prod",
-        "displayName": "CdkWorkshopPipelineStack/Prod"
+        "directoryName": "assembly-CdkWorkshopPipelineStack-prod",
+        "displayName": "CdkWorkshopPipelineStack/prod"
       }
     },
-    "assembly-CdkWorkshopPipelineStack-Dev": {
+    "assembly-CdkWorkshopPipelineStack-dev": {
       "type": "cdk:cloud-assembly",
       "properties": {
-        "directoryName": "assembly-CdkWorkshopPipelineStack-Dev",
-        "displayName": "CdkWorkshopPipelineStack/Dev"
+        "directoryName": "assembly-CdkWorkshopPipelineStack-dev",
+        "displayName": "CdkWorkshopPipelineStack/dev"
       }
     },
     "Tree": {
@@ -44,7 +44,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::226115143550:role/cdk-hnb659fds-deploy-role-226115143550-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::226115143550:role/cdk-hnb659fds-cfn-exec-role-226115143550-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-226115143550-us-east-1/e0cdafd5291f20b469e953ef5aed48017884d4ba164c812472e04778065dd3b1.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-226115143550-us-east-1/eb15fc63c4c788e185994c52096edaa622c6ec80f01f9fa42ec4054de80751b7.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -184,24 +184,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "PipelineUpdatePipelineSelfMutationDAA41400"
-          }
-        ],
-        "/CdkWorkshopPipelineStack/Pipeline/Assets/FileRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineAssetsFileRole59943A77"
-          }
-        ],
-        "/CdkWorkshopPipelineStack/Pipeline/Assets/FileRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineAssetsFileRoleDefaultPolicy14DB8755"
-          }
-        ],
-        "/CdkWorkshopPipelineStack/Pipeline/Assets/FileAsset1/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PipelineAssetsFileAsset185A67CB4"
           }
         ],
         "/CdkWorkshopPipelineStack/CDKMetadata/Default": [
