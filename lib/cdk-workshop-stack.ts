@@ -8,6 +8,7 @@ import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as alb from "aws-cdk-lib/aws-elasticloadbalancingv2";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as rds from "aws-cdk-lib/aws-rds";
+import * as ecs from "aws-cdk-lib/aws-ecs"
 import * as route53 from "aws-cdk-lib/aws-route53";
 import * as route53targets from "aws-cdk-lib/aws-route53-targets";
 import * as s3 from "aws-cdk-lib/aws-s3";
@@ -16,9 +17,11 @@ import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { Bucket, BucketAccessControl } from 'aws-cdk-lib/aws-s3';
 import { BucketDeployment, Source } from "@aws-cdk/aws-s3-deployment";
 import * as path from "path";
+import * as ecs_patterns from "aws-cdk-lib/aws-ecs-patterns"
 import { Distribution, OriginAccessIdentity } from "@aws-cdk/aws-cloudfront";
 import { S3Origin } from "@aws-cdk/aws-cloudfront-origins";
 import { Asset } from 'aws-cdk-lib/aws-s3-assets';
+import { ApplicationProtocol } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 
 export interface FrontendProps extends cdk.StackProps {
     autoscaling: {
@@ -36,6 +39,8 @@ export class CdkWorkshopStack extends cdk.Stack {
             path: 'test-app'
         });
         userData.addCommands("sudo apt install awscli -y")
+        userData.addCommands("sudo apt install python3-pip -y")
+        userData.addCommands("pip install flask")
 
         userData.addS3DownloadCommand({
             bucket: webBuild.bucket,
@@ -92,5 +97,26 @@ export class CdkWorkshopStack extends cdk.Stack {
             //     healthyHttpCodes: "200"
             // },
         })
+
+        const cluster = new ecs.Cluster(this,"clout-cluster",{
+            enableFargateCapacityProviders: true,
+            vpc: vpc
+        });
+        const loadBalancedFargateService = new ecs_patterns.ApplicationLoadBalancedFargateService(this, 'clout-service', {
+          cluster: cluster,
+          memoryLimitMiB: 512,
+          desiredCount: frontendProps.autoscaling.maxCapacity,
+          cpu: 256,
+          protocol: ApplicationProtocol.HTTP,
+          taskImageOptions: {
+            image: ecs.ContainerImage.fromAsset('test-app')
+          },
+          loadBalancerName: 'clout-fargate-alb',
+        });
+
+
+
+
+
     }
 }
