@@ -2,7 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as codecommit from 'aws-cdk-lib/aws-codecommit';
 import { WorkshopPipelineStage } from './pipeline-stage';
-import { CodeBuildStep, CodePipeline, CodePipelineSource } from "aws-cdk-lib/pipelines";
+import { CodeBuildStep, CodePipeline, CodePipelineSource, ManualApprovalStep } from "aws-cdk-lib/pipelines";
 import { AutoScalingAction } from 'aws-cdk-lib/aws-cloudwatch-actions';
 import { InstanceClass, InstanceType, InstanceSize } from 'aws-cdk-lib/aws-ec2';
 import * as ec2 from "aws-cdk-lib/aws-ec2";
@@ -34,7 +34,17 @@ export class WorkshopPipelineStack extends cdk.Stack {
       }
       )
     });
-
+    const dev = new WorkshopPipelineStage(this, 'dev', {
+      env: {
+        account: "366076513585",
+        region: "us-east-1"
+      },
+      autoscaling: {
+        minCapacity: 1,
+        maxCapacity: 1,
+        instanceType: InstanceType.of(InstanceClass.BURSTABLE3, InstanceSize.MICRO)
+      }
+    });
     const qa = new WorkshopPipelineStage(this, 'qa', {
       env: {
         account: "782449017468",
@@ -57,20 +67,30 @@ export class WorkshopPipelineStack extends cdk.Stack {
         instanceType: InstanceType.of(InstanceClass.BURSTABLE3, InstanceSize.MICRO)
       }
     });
-    const dev = new WorkshopPipelineStage(this, 'dev', {
-      env: {
-        account: "366076513585",
-        region: "us-east-1"
-      },
-      autoscaling: {
-        minCapacity: 1,
-        maxCapacity: 1,
-        instanceType: InstanceType.of(InstanceClass.BURSTABLE3, InstanceSize.MICRO)
-      }
+    pipeline.addStage(dev,{
+      stackSteps: [{
+        stack: dev.stack,
+        changeSet: [
+            new ManualApprovalStep('deploy-to-dev', {comment: 'Deploy to Dev?'}),
+        ],
+    }]
     });
-    pipeline.addStage(dev);
-    pipeline.addStage(qa);
-    pipeline.addStage(prod);
+    pipeline.addStage(qa,{
+      stackSteps: [{
+        stack: qa.stack,
+        changeSet: [
+            new ManualApprovalStep('deploy-to-qa', {comment: 'Deploy to Qa?'}),
+        ],
+    }]
+    });
+    pipeline.addStage(prod,{
+      stackSteps: [{
+        stack: prod.stack,
+        changeSet: [
+            new ManualApprovalStep('deploy-to-prod', {comment: 'Deploy to Prod?'}),
+        ],
+    }]
+    });
 
 
 
