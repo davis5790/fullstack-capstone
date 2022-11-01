@@ -67,14 +67,7 @@ export class WorkshopPipelineStack extends cdk.Stack {
         instanceType: InstanceType.of(InstanceClass.BURSTABLE3, InstanceSize.MICRO)
       }
     });
-    pipeline.addStage(dev,{
-      stackSteps: [{
-        stack: dev.stack,
-        changeSet: [
-            new ManualApprovalStep('deploy-to-dev', {comment: 'Deploy to Dev?'}),
-        ],
-    }]
-    });
+    pipeline.addStage(dev);
     pipeline.addStage(qa,{
       stackSteps: [{
         stack: qa.stack,
