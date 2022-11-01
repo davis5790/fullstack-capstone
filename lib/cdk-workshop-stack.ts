@@ -35,14 +35,16 @@ export class CdkWorkshopStack extends cdk.Stack {
         const webBuild = new Asset(this, `web-build-${env}`, {
             path: 'test-app'
         });
+        userData.addCommands("sudo apt install awscli -y")
+
         userData.addS3DownloadCommand({
             bucket: webBuild.bucket,
             bucketKey: webBuild.s3ObjectKey,
             localFile: "/home/ubuntu/helloworld"
         })
 
-        userData.addCommands("sudo apt install unzip")
-        userData.addCommands(`unzip /home/ubuntu/helloworld/${webBuild.s3ObjectKey}`)
+        userData.addCommands("sudo apt install unzip -y")
+        userData.addCommands(`unzip -o /home/ubuntu/helloworld/${webBuild.s3ObjectKey}`)
         userData.addCommands('sudo systemctl restart helloworld')
         const vpc = new ec2.Vpc(this, 'clout-vpc', {
         }) //creates a VPC
@@ -67,7 +69,7 @@ export class CdkWorkshopStack extends cdk.Stack {
             associatePublicIpAddress: true,
             keyName: `clout-bastion-${env}`,
             updatePolicy: autoscaling.UpdatePolicy.replacingUpdate(),
-            allowAllOutbound: false,
+            allowAllOutbound: true,
         });
 
         webBuild.bucket.grantRead(cloutComputingAsg);

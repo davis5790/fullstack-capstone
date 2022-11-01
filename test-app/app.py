@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 #app.config["DEBUG"] = True
  
-@app.route('/form')
+@app.route('/')
 def form():
     return render_template('form.html')
  
@@ -29,5 +29,5 @@ def data():
     return render_template('data.html', info = info)
  
  
-app.run()
-#app.run(host='0.0.0.0', port=80)
+#app.run()
+app.run(host='0.0.0.0', port=80)
