@@ -84,15 +84,15 @@ export class CdkWorkshopStack extends cdk.Stack {
             enableFargateCapacityProviders: true,
             vpc: vpc
         });
-        new ecs_patterns.ApplicationLoadBalancedFargateService(this, 'clout-service', {
-            cluster: cluster,
-            memoryLimitMiB: 512,
-            desiredCount: frontendProps.autoscaling.maxCapacity,
-            cpu: 256,
-            protocol: ApplicationProtocol.HTTP,
-            taskImageOptions: {
-                image: ecs.ContainerImage.fromAsset('test-app')
-            }
-        });
+        // new ecs_patterns.ApplicationLoadBalancedFargateService(this, 'clout-service', {
+        //     cluster: cluster,
+        //     memoryLimitMiB: 512,
+        //     desiredCount: frontendProps.autoscaling.maxCapacity,
+        //     cpu: 256,
+        //     protocol: ApplicationProtocol.HTTP,
+        //     taskImageOptions: {
+        //         image: ecs.ContainerImage.fromAsset('test-app')
+        //     }
+        // });
     }
 }
