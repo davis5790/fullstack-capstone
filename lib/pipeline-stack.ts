@@ -68,24 +68,21 @@ export class WorkshopPipelineStack extends cdk.Stack {
       }
     });
     pipeline.addStage(dev);
-    pipeline.addStage(qa,{
+    pipeline.addStage(qa, {
       stackSteps: [{
         stack: qa.stack,
         changeSet: [
-            new ManualApprovalStep('deploy-to-qa', {comment: 'Deploy to Qa?'}),
+          new ManualApprovalStep('deploy-to-qa', { comment: 'Deploy to Qa?' }),
         ],
-    }]
+      }]
     });
-    pipeline.addStage(prod,{
+    pipeline.addStage(prod, {
       stackSteps: [{
         stack: prod.stack,
         changeSet: [
-            new ManualApprovalStep('deploy-to-prod', {comment: 'Deploy to Prod?'}),
+          new ManualApprovalStep('deploy-to-prod', { comment: 'Deploy to Prod?' }),
         ],
-    }]
+      }]
     });
-
-
-
   }
 }

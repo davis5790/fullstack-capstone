@@ -9,6 +9,5 @@ export class WorkshopPipelineStage extends Stage {
   constructor(scope: Construct, env: string, frontendProps: FrontendProps) {
     super(scope, env, frontendProps);
     this.stack = new CdkWorkshopStack(this, "frontend", env, frontendProps);
-
   }
 }

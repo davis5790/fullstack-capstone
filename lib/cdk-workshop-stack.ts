@@ -80,25 +80,19 @@ export class CdkWorkshopStack extends cdk.Stack {
         //     // },
         // })
 
-        const cluster = new ecs.Cluster(this,"clout-cluster",{
+        const cluster = new ecs.Cluster(this, "clout-cluster", {
             enableFargateCapacityProviders: true,
             vpc: vpc
         });
         new ecs_patterns.ApplicationLoadBalancedFargateService(this, 'clout-service', {
-          cluster: cluster,
-          memoryLimitMiB: 512,
-          desiredCount: frontendProps.autoscaling.maxCapacity,
-          cpu: 256,
-          protocol: ApplicationProtocol.HTTP,
-          taskImageOptions: {
-            image: ecs.ContainerImage.fromAsset('test-app')
-          },
-          loadBalancerName: 'clout-fargate-alb',
+            cluster: cluster,
+            memoryLimitMiB: 512,
+            desiredCount: frontendProps.autoscaling.maxCapacity,
+            cpu: 256,
+            protocol: ApplicationProtocol.HTTP,
+            taskImageOptions: {
+                image: ecs.ContainerImage.fromAsset('test-app')
+            }
         });
-
-
-
-
-
     }
 }
