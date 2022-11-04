@@ -84,7 +84,7 @@ export class CdkWorkshopStack extends cdk.Stack {
             enableFargateCapacityProviders: true,
             vpc: vpc
         });
-        new ecs_patterns.ApplicationLoadBalancedFargateService(this, 'clout-service', {
+        new ecs_patterns.ApplicationLoadBalancedEc2Service(this, 'clout-service', {
             cluster: cluster,
             memoryLimitMiB: 512,
             desiredCount: frontendProps.autoscaling.maxCapacity,
