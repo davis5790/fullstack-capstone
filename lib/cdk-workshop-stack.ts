@@ -20,7 +20,6 @@ export class CdkWorkshopStack extends cdk.Stack {
         const vpc = new ec2.Vpc(this, 'clout-vpc', {
         }) //creates a VPC
 
-        
         const cluster = new ecs.Cluster(this, "clout-cluster", {
             enableFargateCapacityProviders: true,
             vpc: vpc
